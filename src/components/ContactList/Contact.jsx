@@ -1,9 +1,12 @@
-import PropTypes from "prop-types";
 import { BiSolidUser } from "react-icons/bi";
 import { BiSolidPhone } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
 import css from "./Contact.module.css";
 
-export default function Contact({ contact: { id, name, number }, onDelete }) {
+export default function Contact({ contact: { id, name, number } }) {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className={css.div}>
@@ -18,19 +21,14 @@ export default function Contact({ contact: { id, name, number }, onDelete }) {
           </p>
         </div>
 
-        <button className={css.btn} onClick={() => onDelete(id)} type="submit">
+        <button
+          className={css.btn}
+          onClick={() => dispatch(deleteContact(id))}
+          type="submit"
+        >
           Delete
         </button>
       </div>
     </>
   );
 }
-
-Contact.propTypes = {
-  contact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }).isRequired,
-  onDelete: PropTypes.func,
-};

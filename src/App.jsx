@@ -20,11 +20,11 @@ export default function App() {
   const [contacts, setContacts] = useState(getSavedContacts());
   const [filter, setFilter] = useState("");
 
-  const addContact = (newContact) => {
-    setContacts((prevContacts) => {
-      return [...prevContacts, newContact];
-    });
-  };
+  // const addContact = (newContact) => {
+  //   setContacts((prevContacts) => {
+  //     return [...prevContacts, newContact];
+  //   });
+  // };
 
   const deleteContact = (contactID) => {
     setContacts((prevContacts) => {
@@ -43,7 +43,8 @@ export default function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={addContact} />
+      <ContactForm />
+      {/*  onAddContact={addContact} */}
       <SearchBox value={filter} onSearch={setFilter} />
 
       <ContactList contactsData={filteredContacts} onDelete={deleteContact} />
